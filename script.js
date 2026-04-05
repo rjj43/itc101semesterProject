@@ -6,14 +6,38 @@ const emails = [
     type: "email",
     from: `Domino's Support <span class="hoverable" data-tooltip="@Domin0s_Supp0rt">@DominosSupport</span>`,
     subject: "Re: Your recent order complaint 🍕",
-    body: `<p>Hi there! We're so sorry to hear about your experience with your recent order. 😔</p>
-      <p>We'd love to make this right! To process your <b>full refund + a free pizza coupon</b>, we just need to verify your account.</p>
-      <p>Please fill out our quick refund form here:<br>
-      <a class="hoverable" data-tooltip="http://domin0s-refunds.pizzahelp.ru/claim" href="#">dominospizza.com/refund-claim</a></p>
-      <p>We'll have your refund processed within 24 hours! 🎉</p>
-      <p class="sig">— Domino's Customer Care Team</p>`,
+    body: `
+      <div class="social-dm-frame">
+        <div class="social-dm-header">
+          <div class="social-dm-platform">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="vertical-align:middle;">
+              <path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.3 4.3 0 0 0 1.88-2.38 8.59 8.59 0 0 1-2.72 1.04 4.28 4.28 0 0 0-7.32 3.91A12.16 12.16 0 0 1 3 4.79a4.28 4.28 0 0 0 1.32 5.72 4.24 4.24 0 0 1-1.94-.54v.05a4.28 4.28 0 0 0 3.43 4.2 4.27 4.27 0 0 1-1.93.07 4.29 4.29 0 0 0 4 2.97A8.59 8.59 0 0 1 2 19.54a12.13 12.13 0 0 0 6.56 1.92c7.88 0 12.2-6.53 12.2-12.2 0-.19 0-.37-.01-.56A8.72 8.72 0 0 0 23 6.29l-.54-.29z" fill="#8892a4"/>
+            </svg>
+            <span style="color:#8892a4; font-size:0.78rem; margin-left:4px;">Direct Message</span>
+          </div>
+          <div class="social-dm-user">
+            <div class="social-dm-avatar" style="background:#0068a8; color:#fff; overflow:hidden;">
+              <img src="img/dominos-fake-avatar.png" alt="" style="width:100%; height:100%; object-fit:cover;" onerror="this.style.display='none'; this.parentElement.textContent='D';">
+            </div>
+            <div>
+              <div class="social-dm-name">Domino's Support <span style="color:#8892a4; font-weight:400;">@Domin0s_Supp0rt</span></div>
+              <div class="social-dm-subtext">Not following you</div>
+            </div>
+          </div>
+        </div>
+        <div class="social-dm-body">
+          <p>Hi there! We're so sorry to hear about your experience with your recent order. 😔</p>
+          <p>We'd love to make this right! To process your <b>full refund + a free pizza coupon</b>, we just need to verify your account.</p>
+          <p>Please fill out our quick refund form here:<br>
+          <a class="hoverable" data-tooltip="http://domin0s-refunds.pizzahelp.ru/claim" href="#">dominospizza.com/refund-claim</a></p>
+          <p>We'll have your refund processed within 24 hours! 🎉</p>
+        </div>
+        <div class="social-dm-footer">
+          <span style="color:#6272a4; font-size:0.78rem;">2:34 PM · Apr 3, 2026</span>
+        </div>
+      </div>`,
     answer: "phishing",
-    explanation: "Angler Phishing — This mimics a brand's social media support account. The handle uses zeros instead of O's (@Domin0s_Supp0rt) and the refund link points to a suspicious .ru domain, not the real Domino's site.",
+    explanation: `<b>Angler Phishing</b> — Angler phishing targets people on social media by impersonating a brand's official customer support account. Attackers monitor public complaints on platforms like X/Twitter and Instagram, then swoop in with fake "support" accounts to intercept frustrated customers before the real brand can respond. <br><br><b>Red flags in this example:</b> The handle uses zeros instead of O's (<code>@Domin0s_Supp0rt</code> vs. the real <code>@DominosSupport</code>). The refund link points to a <code>.ru</code> domain (<code>pizzahelp.ru</code>), not Domino's actual site. The account also says "Not following you," which is unusual for a real brand support account engaging in an active customer service thread. A real refund would be processed through the brand's official website or app, never through a third-party link sent via DM.`,
     attachment: null
   },
 
@@ -27,23 +51,45 @@ const emails = [
       <a class="hoverable" data-tooltip="http://amex-secure-verify.web-login.cc/auth" href="#">amex.com/verify-account</a></p>
       <p style="opacity:0.6; font-size:0.85em;">Reply STOP to unsubscribe</p>`,
     answer: "phishing",
-    explanation: "Smishing — This is a phishing text message (SMS). The sender is not an official AmEx number, and the verification link goes to 'web-login.cc' — not the real American Express domain. Legitimate banks never ask you to verify via text links.",
+    explanation: `<b>Smishing (SMS Phishing)</b> — Smishing uses text messages instead of email to deliver phishing attacks. It's especially dangerous because people tend to trust texts more than email, and phone screens make it harder to inspect full URLs before tapping. Attackers impersonate banks, delivery services, and government agencies to create urgency. <br><br><b>Red flags in this example:</b> The sender is a random 10-digit phone number (<code>734-555-0192</code>), not an official AmEx short code (the real AmEx uses short codes like 36521). The link displays as <code>amex.com</code> but actually points to <code>web-login.cc</code> — a completely unrelated domain. Legitimate banks never ask you to verify your identity through a text message link. If you receive a message like this, call the number on the back of your card directly.`,
     attachment: null
   },
 
   // 3. Man-in-the-Middle (MiTM) attack
   {
-    type: "email",
-    from: `Equifax Security <span class="hoverable" data-tooltip="security@equifax-alerts.net">&lt;security@equifax.com&gt;</span>`,
-    subject: "Action Required: Update your Equifax app now",
-    body: `<p>Dear Valued Customer,</p>
-      <p>We've released a critical security patch for the Equifax mobile app. To protect your credit data, please update immediately.</p>
-      <p><b>Download the update here:</b><br>
-      <a class="hoverable" data-tooltip="http://equifax-app-update.net/download.apk" href="#">Download Equifax App v3.8.1 (Secure Update)</a></p>
-      <p>⚠️ Failing to update may expose your account to unauthorized access.</p>
-      <p class="sig">Equifax Security Team</p>`,
+    type: "website",
+    browserUrl: "http://free-wifi-connect.net/portal/login",
+    browserTitle: "Free Airport WiFi – Connect",
+    body: `<div class="web-page">
+      <img src="img/airport-wifi-bg.png" alt="" style="width:100%; height:80px; object-fit:cover; border-radius:8px 8px 0 0; opacity:0.4; margin-bottom:-8px;" onerror="this.style.display='none';">
+      <div style="text-align:center; margin-bottom:18px;">
+        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="28" cy="28" r="28" fill="#252840"/>
+          <path d="M28 38a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" fill="#8be9fd"/>
+          <path d="M20.5 30.5a10.6 10.6 0 0 1 15 0" stroke="#8be9fd" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <path d="M16 26a17 17 0 0 1 24 0" stroke="#8be9fd" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.7"/>
+          <path d="M11.5 21.5a23.4 23.4 0 0 1 33 0" stroke="#8be9fd" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.4"/>
+        </svg>
+        <h3 style="font-size:1.15rem; margin:10px 0 4px; color:#e5e5ea;">SLC Airport Free WiFi</h3>
+        <p style="font-size:0.82rem; color:#8892a4;">Connect to browse the internet for free</p>
+      </div>
+      <div class="web-form-box">
+        <p style="font-size:0.82rem; color:#8892a4; margin-bottom:12px;">Sign in with your email to get complimentary internet access throughout the terminal.</p>
+        <label class="web-label">Email Address</label>
+        <div class="web-input">you@email.com</div>
+        <label class="web-label">Password</label>
+        <div class="web-input web-input-pw">••••••••</div>
+        <div style="display:flex; align-items:center; gap:6px; margin:10px 0;">
+          <div style="width:14px; height:14px; border:1px solid #3a3f58; border-radius:3px; background:#252840;"></div>
+          <span style="font-size:0.78rem; color:#8892a4;">Remember me on this device</span>
+        </div>
+        <div class="web-btn-primary" style="background:#8be9fd; color:#0f1117;">Connect to WiFi</div>
+        <p style="font-size:0.72rem; color:#6272a4; margin-top:10px; text-align:center;">By connecting, you agree to our <a href="#" style="color:#0a84ff;">Terms of Service</a></p>
+      </div>
+      <p style="font-size:0.72rem; color:#6272a4; margin-top:14px; text-align:center;">Powered by AirNet Hospitality Services</p>
+    </div>`,
     answer: "phishing",
-    explanation: "Man-in-the-Middle (MiTM) — The email tricks you into downloading an app over insecure HTTP from a non-official domain. This fake update could intercept your data in transit. Real app updates come from official app stores, not email links.",
+    explanation: `<b>Man-in-the-Middle (MiTM) Attack</b> — In a MiTM attack, the attacker secretly positions themselves between you and the service you're communicating with, intercepting and potentially altering data flowing in both directions. A common method is the "evil twin" — a fake WiFi hotspot that mimics a legitimate network. Once you connect, all your browsing, login credentials, and data pass through the attacker's equipment. <br><br><b>Red flags in this example:</b> The URL is <code>http://</code> (not HTTPS), meaning all data you submit is transmitted in plain text and can be read by anyone on the network. The portal asks for an email <em>and password</em> — legitimate airport WiFi never requires your email password, only an email address at most. The domain <code>free-wifi-connect.net</code> is generic and unaffiliated with any real airport or ISP. To stay safe on public WiFi, use a VPN, avoid entering credentials on HTTP pages, and never reuse passwords.`,
     attachment: null
   },
 
@@ -53,7 +99,13 @@ const emails = [
     browserUrl: "http://www.amaz0n-verify.com/ap/signin",
     browserTitle: "Amazon Sign-In",
     body: `<div class="web-page">
-      <div class="web-logo" style="color:#ff9900; font-size:1.6rem; font-weight:700; margin-bottom:16px;">amazon<span style="color:#ff9900;">.com</span></div>
+      <div style="text-align:center; margin-bottom:16px;">
+        <svg width="100" height="32" viewBox="0 0 200 64" xmlns="http://www.w3.org/2000/svg">
+          <text x="10" y="44" font-family="'DM Sans', Arial, sans-serif" font-size="38" font-weight="700" fill="#f8f8f2">amazon</text>
+          <path d="M10 52 Q60 64 130 52" stroke="#ff9900" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M125 47 L132 52 L125 52" fill="#ff9900"/>
+        </svg>
+      </div>
       <div class="web-form-box">
         <h3 style="font-size:1.1rem; margin-bottom:14px; color:#d8dce6;">Sign in</h3>
         <label class="web-label">Email or mobile phone number</label>
@@ -63,10 +115,11 @@ const emails = [
         <div class="web-btn-primary">Sign in</div>
         <p style="font-size:0.78rem; color:#6272a4; margin-top:12px;">By continuing, you agree to Amazon's <a href="#" style="color:#0a84ff;">Conditions of Use</a> and <a href="#" style="color:#0a84ff;">Privacy Notice</a>.</p>
       </div>
-      <p style="font-size:0.8rem; color:#6272a4; margin-top:16px; text-align:center;">New to Amazon? <a href="#" style="color:#0a84ff;">Create your Amazon account</a></p>
+      <div class="web-divider" style="margin:16px 0;"></div>
+      <p style="font-size:0.8rem; color:#6272a4; text-align:center;">New to Amazon? <a href="#" style="color:#0a84ff;">Create your Amazon account</a></p>
     </div>`,
     answer: "phishing",
-    explanation: "Website Spoofing — This looks like an Amazon login page, but check the URL bar: it says 'amaz0n-verify.com' (with a zero instead of an 'o') and uses HTTP instead of HTTPS. The real Amazon sign-in is at amazon.com with a secure HTTPS connection.",
+    explanation: `<b>Website Spoofing</b> — Website spoofing involves creating a near-perfect replica of a legitimate website to steal login credentials. Attackers clone the visual design, branding, and layout of real sites — often down to the fonts and images — making the fake virtually indistinguishable at first glance. Victims typically arrive via phishing emails, ads, or search results. <br><br><b>Red flags in this example:</b> The URL says <code>amaz0n-verify.com</code> — using a zero instead of the letter "o" and appending "-verify" to seem official. The connection uses HTTP instead of HTTPS (note the ⚠️ warning icon, not the 🔒 lock). The real Amazon sign-in page is at <code>amazon.com/ap/signin</code> over a secure HTTPS connection. Always check the URL bar carefully before entering credentials, and bookmark important login pages so you never rely on links to reach them.`,
     attachment: null
   },
 
@@ -75,14 +128,23 @@ const emails = [
     type: "email",
     from: `LinkedIn <span class="hoverable" data-tooltip="notifications@linkedln-mail.com">&lt;notifications@linkedin.com&gt;</span>`,
     subject: "You appeared in 12 searches this week",
-    body: `<p>Hi there,</p>
+    body: `
+      <div style="text-align:center; margin-bottom:14px;">
+        <svg width="34" height="34" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg">
+          <rect width="34" height="34" rx="4" fill="#0a66c2"/>
+          <text x="6" y="26" font-family="'DM Sans', Arial, sans-serif" font-size="20" font-weight="700" fill="#fff">in</text>
+        </svg>
+      </div>
+      <p>Hi there,</p>
       <p>Your profile has been viewed by recruiters from <b>Google</b>, <b>Apple</b>, and <b>Microsoft</b> this week!</p>
       <p>See who's looking at your profile:</p>
       <p><a class="hoverable" data-tooltip="http://linkedln-mail.com/profile-views" href="#">View your profile visitors on LinkedIn</a></p>
       <p>Upgrade to Premium to unlock all viewer details.</p>
-      <p class="sig">The LinkedIn Team</p>`,
+      <p class="sig">The LinkedIn Team<br>
+      <span style="font-size:0.78rem;">Sunnyvale, CA 94085</span></p>
+      <p style="font-size:0.82em; color:#6272a4; margin-top:12px;">You are receiving LinkedIn notification emails. <a class="hoverable" data-tooltip="http://linkedln-mail.com/unsubscribe" href="#">Unsubscribe</a> · <a class="hoverable" data-tooltip="http://linkedln-mail.com/help" href="#">Help</a></p>`,
     answer: "phishing",
-    explanation: "Domain Spoofing — The sender domain is 'linkedln-mail.com' (with an L instead of an I in 'linkedin'). The link also goes to this fraudulent domain. Attackers register domains that look nearly identical to real ones to steal your credentials.",
+    explanation: `<b>Domain Spoofing (DNS Spoofing)</b> — Domain spoofing exploits how humans read URLs by registering a domain that's nearly identical to a trusted one. Attackers rely on visual similarity — swapping characters that look alike (l/I, 0/O, rn/m), adding hyphens or subdomains, or using different TLDs. Unlike website spoofing which clones a page's <em>appearance</em>, domain spoofing specifically targets the <em>domain name</em> to pass casual inspection. <br><br><b>Red flags in this example:</b> The sender's actual domain is <code>linkedln-mail.com</code> — using a lowercase L ("l") where LinkedIn has a lowercase I ("i"). At a normal reading speed, "linkedln" and "linkedin" look identical. All links also go to this same fraudulent domain. The unsubscribe and help links also point to the fake domain, which is a strong tell — legitimate emails route these to the company's real site. Hover over sender addresses and links to see where they actually point.`,
     attachment: null
   },
 
@@ -94,14 +156,28 @@ const emails = [
     body: `<p>Dear Customer,</p>
       <p>Your package is on its way! Please review the attached shipping label to confirm your delivery details.</p>
       <p>Click the image below to view your full tracking information:</p>
-      <div class="fake-image hoverable" data-tooltip="shipping_label_preview.png">
-        <div class="image-icon">📦</div>
-        <div>shipping_label_preview.png</div>
-        <div class="image-sub">Click to view full size</div>
+      <div class="fake-image hoverable" data-tooltip="http://fedex-notifications.info/download/tracking_detail.js">
+        <img src="img/fake-shipping-label.png" alt="Shipping Label Preview" style="width:100%; border-radius:6px; margin-bottom:6px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <svg width="120" height="80" viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:6px; display:none;">
+          <rect x="5" y="5" width="110" height="70" rx="4" fill="none" stroke="#3a3f58" stroke-width="1" stroke-dasharray="4,3"/>
+          <rect x="10" y="12" width="60" height="6" rx="2" fill="#3a3f58"/>
+          <rect x="10" y="22" width="45" height="4" rx="2" fill="#2e3150"/>
+          <rect x="10" y="30" width="50" height="4" rx="2" fill="#2e3150"/>
+          <rect x="10" y="38" width="38" height="4" rx="2" fill="#2e3150"/>
+          <rect x="75" y="12" width="35" height="35" fill="#2e3150" rx="3"/>
+          <rect x="80" y="17" width="25" height="10" fill="#3a3f58" rx="1"/>
+          <rect x="80" y="30" width="25" height="12" rx="1" fill="none" stroke="#3a3f58" stroke-width="1"/>
+          <text x="85" y="40" font-size="6" fill="#3a3f58" font-family="monospace">|||||||</text>
+          <rect x="10" y="52" width="100" height="6" rx="2" fill="#3a3f58" opacity="0.5"/>
+          <rect x="10" y="62" width="70" height="4" rx="2" fill="#2e3150"/>
+        </svg>
+        <div style="font-size:0.88rem;">shipping_label_preview.png</div>
+        <div class="image-sub">Click to view full size (2.4 MB)</div>
       </div>
-      <p class="sig">FedEx Automated Notifications</p>`,
+      <p class="sig">FedEx Automated Notifications<br>
+      <span style="font-size:0.78rem; color:#6272a4;">Tracking #: 7891-2045-8833</span></p>`,
     answer: "phishing",
-    explanation: "Image Phishing — The 'shipping label' image has embedded malicious code. Clicking it would execute JavaScript that downloads malware. Legitimate delivery services link to their official tracking page — they don't send clickable image files via email.",
+    explanation: `<b>Image Phishing</b> — Image phishing hides malicious code inside image files or uses images to bypass text-based email filters. Some variants embed JavaScript or executable code within image metadata; others disguise executable files as images using double file extensions (e.g., <code>.png.exe</code>). Because email scanners primarily analyze text, embedding the phishing payload in an image can slip past spam filters. <br><br><b>Red flags in this example:</b> The sender's actual domain is <code>fedex-notifications.info</code>, not the official <code>fedex.com</code>. Hovering over the image reveals it would download a JavaScript file (<code>tracking_detail.js</code>), not a PNG image — this script could install malware or steal credentials. The file size (2.4 MB) is also suspiciously large for a simple shipping label image. Legitimate carriers display tracking info on their website, not through downloadable image files. Also note the attached file: <code>ShippingLabel_Details.png.exe</code> — the double extension is a classic trick to disguise an executable as an image.`,
     attachment: { name: "ShippingLabel_Details.png.exe", tooltip: "ShippingLabel_Details.png.exe" }
   },
 
@@ -117,17 +193,41 @@ const emails = [
       </div>
       <div class="web-divider"></div>
       <div style="display:flex; gap:18px; margin-top:14px;">
-        <div class="web-product-img">📦<br><span style="font-size:0.7rem; color:#6272a4;">Product Image</span></div>
+        <div class="web-product-img">
+          <img src="img/ps5-product.png" alt="Product" style="width:100%; height:100%; object-fit:contain; border-radius:8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div style="display:none;">
+            <svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+              <rect x="5" y="18" width="50" height="30" rx="6" fill="#3a3f58"/>
+              <rect x="8" y="20" width="28" height="26" rx="2" fill="#252840" stroke="#48484a" stroke-width="0.5"/>
+              <circle cx="22" cy="33" r="6" fill="none" stroke="#48484a" stroke-width="1"/>
+              <circle cx="22" cy="33" r="2" fill="#48484a"/>
+              <rect x="40" y="24" width="4" height="4" rx="2" fill="#0a84ff" opacity="0.7"/>
+              <rect x="40" y="32" width="4" height="4" rx="2" fill="#ff5555" opacity="0.7"/>
+              <rect x="40" y="40" width="4" height="4" rx="2" fill="#50fa7b" opacity="0.7"/>
+              <rect x="46" y="28" width="6" height="10" rx="1" fill="#3a3f58" stroke="#48484a" stroke-width="0.5"/>
+            </svg>
+            <span style="font-size:0.62rem; color:#6272a4; margin-top:2px;">Product Image</span>
+          </div>
+        </div>
         <div style="flex:1;">
           <h3 style="font-size:1.05rem; margin-bottom:6px; color:#d8dce6;">Sony PS5 Pro + 2 Controllers + 5 Games</h3>
-          <div style="margin-bottom:8px;"><span style="text-decoration:line-through; color:#6272a4;">$849.99</span> <span style="color:#50fa7b; font-weight:700; font-size:1.2rem;">$149.99</span> <span style="background:rgba(255,85,85,0.15); color:#ff5555; font-size:0.75rem; padding:2px 6px; border-radius:3px; font-weight:600;">94% OFF</span></div>
+          <div style="display:flex; align-items:center; gap:4px; margin-bottom:4px;">
+            <span style="color:#ffb86c;">★★★★★</span>
+            <span style="font-size:0.75rem; color:#6272a4;">(2,847 reviews)</span>
+          </div>
+          <div style="margin-bottom:8px;"><span class="strikethrough">$849.99</span> <span class="sale" style="font-size:1.2rem;">$149.99</span> <span style="background:rgba(255,85,85,0.15); color:#ff5555; font-size:0.75rem; padding:2px 6px; border-radius:3px; font-weight:600;">94% OFF</span></div>
           <p style="font-size:0.82rem; color:#ff5555; font-weight:600;">⏰ Only 3 remaining at this price!</p>
           <p style="font-size:0.82rem; color:#8892a4; margin-top:6px;">Free shipping · 30-day returns</p>
         </div>
       </div>
       <div class="web-divider" style="margin:14px 0;"></div>
+      <div class="deal-box">
+        <div class="deal-urgency">🔥 FLASH SALE — Ends in 04:23:17</div>
+      </div>
       <label class="web-label">Full Name</label>
       <div class="web-input">Enter your full name</div>
+      <label class="web-label">Shipping Address</label>
+      <div class="web-input">Enter your address</div>
       <label class="web-label">Credit Card Number</label>
       <div class="web-input">XXXX-XXXX-XXXX-XXXX</div>
       <div style="display:flex; gap:10px;">
@@ -138,7 +238,7 @@ const emails = [
       <p style="font-size:0.72rem; color:#6272a4; margin-top:10px; text-align:center;">🔒 Secure Checkout · 256-bit encryption</p>
     </div>`,
     answer: "phishing",
-    explanation: "Search Engine Phishing — This fake product page appeared in search results. The URL is 'best-deals-finder.biz' — an unknown domain, not a real retailer. A PS5 Pro bundle for $149 (94% off) is unrealistically cheap, and the page asks for credit card info directly instead of using a known payment processor.",
+    explanation: `<b>Search Engine Phishing</b> — Search engine phishing exploits paid ads and SEO manipulation to make fake product listings appear in search results alongside legitimate ones. Attackers create convincing storefronts with "too-good-to-be-true" deals, then collect your credit card and personal information directly on the page rather than using a legitimate payment processor like Stripe or PayPal. <br><br><b>Red flags in this example:</b> The URL is <code>best-deals-finder.biz</code> — a generic domain with a <code>.biz</code> TLD, not a recognized retailer. A PS5 Pro bundle for $149.99 (94% off) is absurdly unrealistic. The "Verified Seller" badge is self-assigned and meaningless. The countdown timer and "Only 3 remaining" are high-pressure urgency tactics designed to prevent you from thinking critically. Most importantly, the page asks for credit card details directly on the page — legitimate retailers use secure, established payment processors and never collect raw card data on a product page. The 2,847 "reviews" on an unknown site are also fabricated.`,
     attachment: null
   },
 
@@ -149,13 +249,21 @@ const emails = [
     type: "email",
     from: `BYU Financial Services <span class="hoverable" data-tooltip="financialservices@byu.edu">&lt;financialservices@byu.edu&gt;</span>`,
     subject: "Fall 2026 Tuition Statement Available",
-    body: `<p>Dear Student,</p>
+    body: `
+      <div style="text-align:center; margin-bottom:14px;">
+        <svg width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="22" cy="22" r="22" fill="#002e5d"/>
+          <text x="22" y="28" text-anchor="middle" font-family="'DM Sans', serif" font-size="16" font-weight="700" fill="#fff">BYU</text>
+        </svg>
+      </div>
+      <p>Dear Student,</p>
       <p>Your tuition statement for <b>Fall Semester 2026</b> is now available. You can view your account balance and payment options through your MyBYU portal.</p>
       <p><a class="hoverable" data-tooltip="https://my.byu.edu/financial/statement" href="#">View your statement on MyBYU</a></p>
-      <p>Payment is due by <b>September 12, 2026</b>. If you have questions, contact Financial Services at (801) 422-2507 or visit us in B-34 ASB.</p>
+      <p>Payment is due by <b>September 12, 2026</b>. If you have questions, contact Financial Services at <b>(801) 422-2507</b> or visit us in <b>B-34 ASB</b>.</p>
+      <p style="font-size:0.85em; color:#6272a4; margin-top:14px;">This is an automated notification from Brigham Young University. Please do not reply to this message.</p>
       <p class="sig">BYU Financial Services<br>Brigham Young University<br>Provo, UT 84602</p>`,
     answer: "legit",
-    explanation: "Legitimate — This is a real BYU email. The sender is from the official @byu.edu domain, the link goes to the real my.byu.edu portal over HTTPS, and it provides a verifiable phone number and physical office location.",
+    explanation: `<b>Legitimate Email</b> — This is a genuine university communication. Here's why you can trust it: <br><br><b>Trust indicators:</b> The sender uses BYU's official <code>@byu.edu</code> domain — a <code>.edu</code> domain that can only be registered by accredited educational institutions. The link points to <code>https://my.byu.edu</code> (HTTPS, real BYU subdomain). It includes a verifiable phone number and physical office location (B-34 ASB) you can independently confirm. The email doesn't create artificial urgency — it gives a clear due date well in advance. It doesn't ask you to click a link to "verify your account" or enter credentials; it simply directs you to your existing portal. The tone is professional and measured, with no threats or pressure tactics.`,
     attachment: null
   },
 
@@ -164,7 +272,14 @@ const emails = [
     type: "email",
     from: `Costco Wholesale <span class="hoverable" data-tooltip="offers@costco.com">&lt;offers@costco.com&gt;</span>`,
     subject: "This week's member-only savings — up to 30% off",
-    body: `<p>Hi Member,</p>
+    body: `
+      <div style="text-align:center; margin-bottom:14px;">
+        <svg width="80" height="28" viewBox="0 0 160 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="160" height="40" rx="4" fill="#e31837"/>
+          <text x="80" y="28" text-anchor="middle" font-family="'DM Sans', Arial, sans-serif" font-size="20" font-weight="700" fill="#fff" letter-spacing="2">COSTCO</text>
+        </svg>
+      </div>
+      <p>Hi Member,</p>
       <p>Here are this week's exclusive savings for Costco members:</p>
       <ul>
         <li>Kirkland Signature Olive Oil, 2L — <b>$12.99</b> (save $4)</li>
@@ -172,10 +287,11 @@ const emails = [
         <li>Michelin All-Season Tires (set of 4) — <b>$599.99</b> (save $180)</li>
       </ul>
       <p><a class="hoverable" data-tooltip="https://www.costco.com/weekly-deals.html" href="#">See all member deals at Costco.com</a></p>
-      <p style="font-size:0.85em;color:#888;">You're receiving this because you opted in to Costco promotional emails. <a class="hoverable" data-tooltip="https://www.costco.com/email-preferences.html" href="#">Unsubscribe</a></p>
-      <p class="sig">Costco Wholesale Corporation</p>`,
+      <p style="font-size:0.85em;color:#888;">You're receiving this because you opted in to Costco promotional emails. <a class="hoverable" data-tooltip="https://www.costco.com/email-preferences.html" href="#">Unsubscribe</a> | <a class="hoverable" data-tooltip="https://www.costco.com/privacy-policy.html" href="#">Privacy Policy</a></p>
+      <p class="sig">Costco Wholesale Corporation<br>
+      <span style="font-size:0.78rem;">999 Lake Dr, Issaquah, WA 98027</span></p>`,
     answer: "legit",
-    explanation: "Legitimate — This is a real Costco promotion. The sender uses the official @costco.com domain, all links point to costco.com over HTTPS, the discounts are reasonable, and there's a proper unsubscribe link.",
+    explanation: `<b>Legitimate Email</b> — This is a real Costco promotional email. Here's what makes it trustworthy: <br><br><b>Trust indicators:</b> The sender uses the official <code>@costco.com</code> domain. All links — including the unsubscribe and privacy policy — point to <code>costco.com</code> over HTTPS. The discounts are realistic and specific (15–25% off, not 90%+ off). It doesn't demand immediate action, ask for personal information, or threaten account suspension. The email includes Costco's real corporate address in Issaquah, WA, and provides clear opt-out mechanisms as required by the CAN-SPAM Act. <br><br><b>Compare with phishing:</b> Unlike phishing emails, this one doesn't use urgency language ("ACT NOW!"), doesn't link to unfamiliar domains, and the discount percentages are reasonable for a real retailer.`,
     attachment: null
   },
 
@@ -190,7 +306,7 @@ const emails = [
       <p style="font-size:0.85em; color:#888;">You signed up for SurveyRewardz on 03/14/2025. <a class="hoverable" data-tooltip="https://www.surveyrewardz.com/unsubscribe" href="#">Unsubscribe</a> | <a class="hoverable" data-tooltip="https://www.surveyrewardz.com/privacy" href="#">Privacy Policy</a></p>
       <p class="sig">SurveyRewardz Inc.<br>440 N Wolfe Rd, Sunnyvale, CA 94085</p>`,
     answer: "legit",
-    explanation: "Legitimate (spam but not malicious) — While this is unsolicited marketing, it's not phishing. The links all go to the real surveyrewardz.com domain over HTTPS, the reward is modest ($5, not $500), and it includes a physical address and unsubscribe option.",
+    explanation: `<b>Legitimate (Spam, but Not Phishing)</b> — This is an important distinction: not every annoying or unsolicited email is a phishing attempt. This is marketing spam from a real (if minor) company. <br><br><b>Why it's not phishing:</b> All links consistently point to <code>surveyrewardz.com</code> over HTTPS — the sending domain and link domains match. The reward is modest and realistic ($5, not "$500 FREE!"). It includes a physical mailing address and a clear unsubscribe option, both legally required by the CAN-SPAM Act. It references a specific sign-up date, which adds credibility. <br><br><b>The lesson:</b> Learning to distinguish between "annoying but harmless" and "actively malicious" is a key skill. Phishing emails typically impersonate well-known brands, use mismatched domains, create false urgency, and try to harvest credentials or financial data. This email does none of those things — it's just a company you signed up with sending you marketing.`,
     attachment: null
   }
 ];
@@ -376,10 +492,10 @@ function guess(answer) {
 
   if (isCorrect) {
     resultArea.className = "result-correct";
-    resultEl.innerHTML = `<span class="result-icon">✅</span> <b>Correct!</b> ${currentEmail.explanation}`;
+    resultEl.innerHTML = `<span class="result-icon">✅</span> <b>Correct!</b><br><br>${currentEmail.explanation}`;
   } else {
     resultArea.className = "result-incorrect";
-    resultEl.innerHTML = `<span class="result-icon">❌</span> <b>Incorrect.</b> ${currentEmail.explanation}`;
+    resultEl.innerHTML = `<span class="result-icon">❌</span> <b>Incorrect.</b><br><br>${currentEmail.explanation}`;
   }
 
   // Highlight buttons
