@@ -1,5 +1,5 @@
 const emails = [
-  // ── PHISHING EMAILS (7) ──────────────────────────────────────
+  // ── PHISHING EMAILS (13) ─────────────────────────────────────
 
   // 1. Angler Phishing (fake social media support)
   {
@@ -242,9 +242,174 @@ const emails = [
     attachment: null
   },
 
+  // 8. Evil Twin Phishing (fake WiFi reconnection email)
+  {
+    type: "email",
+    from: `BYU IT Services <span class="hoverable" data-tooltip="helpdesk@byu-itsupport.net">&lt;helpdesk@byu.edu&gt;</span>`,
+    subject: "Wi-Fi Security Alert – Reconnection Required",
+    body: `
+      <div style="text-align:center; margin-bottom:14px;">
+        <svg width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="22" cy="22" r="22" fill="#002e5d"/>
+          <text x="22" y="28" text-anchor="middle" font-family="'DM Sans', serif" font-size="16" font-weight="700" fill="#fff">BYU</text>
+        </svg>
+      </div>
+      <p>Dear Student,</p>
+      <p>Our security team has detected a vulnerability in the campus Wi-Fi network (<b>BYU-WiFi</b>). To protect your data, we've rolled out a security patch that requires all users to re-authenticate.</p>
+      <p>Please disconnect from your current Wi-Fi and reconnect using the secure portal below:</p>
+      <p><a class="hoverable" data-tooltip="http://byu-secure-login.com/wifi/reconnect" href="#">https://wifi.byu.edu/reconnect</a></p>
+      <p>⚠️ You must complete this step within <b>24 hours</b> to maintain network access. Devices that have not re-authenticated will be automatically disconnected.</p>
+      <p>If you have any questions, contact the IT Service Desk at (801) 422-4000.</p>
+      <p class="sig">BYU Information Technology<br>
+      Brigham Young University<br>
+      2027 CTB, Provo, UT 84602</p>`,
+    answer: "phishing",
+    explanation: `<b>Evil Twin Phishing</b> — An evil twin attack creates a fake Wi-Fi network that mimics a legitimate one (like "BYU-WiFi" or "Starbucks_Free_WiFi"). When victims connect, all their internet traffic passes through the attacker's device, allowing them to capture login credentials, session cookies, and other sensitive data. The email component often serves as the lure — pushing users off a real network and onto the attacker's fake one. <br><br><b>Red flags in this example:</b> The displayed sender shows <code>helpdesk@byu.edu</code>, but the actual address is <code>helpdesk@byu-itsupport.net</code> — a lookalike domain, not BYU's real <code>.edu</code> address. The "secure portal" link displays as <code>wifi.byu.edu</code> but actually points to <code>byu-secure-login.com</code>, an unrelated domain over HTTP. Legitimate IT departments push Wi-Fi updates through device settings or official portals, not email links. The 24-hour deadline creates artificial pressure to act without verifying.`,
+    attachment: null
+  },
+
+  // 9. Watering Hole Phishing (compromised course materials site)
+  {
+    type: "website",
+    browserUrl: "http://byu-coursework-portal.com/cs260/materials",
+    browserTitle: "CS 260 – Course Materials",
+    body: `<div class="web-page">
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px;">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="16" fill="#002e5d"/>
+          <text x="16" y="21" text-anchor="middle" font-family="'DM Sans', serif" font-size="11" font-weight="700" fill="#fff">BYU</text>
+        </svg>
+        <div>
+          <div style="font-weight:700; font-size:1.05rem; color:#e5e5ea;">CS 260 — Web Programming</div>
+          <div style="font-size:0.78rem; color:#8892a4;">Fall 2026 · Prof. Jensen</div>
+        </div>
+      </div>
+      <div class="web-divider"></div>
+      <h3 style="font-size:0.95rem; margin:14px 0 10px; color:#d8dce6;">📁 Updated Materials — Week 12</h3>
+      <div style="background:#252840; border:1px solid #2e3150; border-radius:6px; padding:12px 14px; margin-bottom:8px; display:flex; align-items:center; gap:10px; cursor:pointer;">
+        <span style="font-size:1.2rem;">📄</span>
+        <div style="flex:1;">
+          <div style="font-size:0.88rem; color:#d8dce6;">Lecture12_React_Hooks.pdf</div>
+          <div style="font-size:0.72rem; color:#6272a4;">2.1 MB · Uploaded Apr 2, 2026</div>
+        </div>
+        <span style="color:#0a84ff; font-size:0.82rem;">Download</span>
+      </div>
+      <div style="background:#252840; border:1px solid #2e3150; border-radius:6px; padding:12px 14px; margin-bottom:8px; display:flex; align-items:center; gap:10px; cursor:pointer;">
+        <span style="font-size:1.2rem;">📄</span>
+        <div style="flex:1;">
+          <div style="font-size:0.88rem; color:#d8dce6;">Assignment6_Starter_Code.zip</div>
+          <div style="font-size:0.72rem; color:#6272a4;">4.8 MB · Uploaded Apr 2, 2026</div>
+        </div>
+        <span style="color:#0a84ff; font-size:0.82rem;">Download</span>
+      </div>
+      <div style="background:#252840; border:1px solid #2e3150; border-radius:6px; padding:12px 14px; margin-bottom:8px; display:flex; align-items:center; gap:10px; cursor:pointer;">
+        <span style="font-size:1.2rem;">🔗</span>
+        <div style="flex:1;">
+          <div style="font-size:0.88rem; color:#d8dce6;">Study Guide — Midterm 2 Review</div>
+          <div style="font-size:0.72rem; color:#6272a4;">External link · Added Apr 1, 2026</div>
+        </div>
+        <span style="color:#0a84ff; font-size:0.82rem;">Open</span>
+      </div>
+      <div class="web-divider" style="margin:14px 0;"></div>
+      <p style="font-size:0.78rem; color:#6272a4;">Last updated: April 2, 2026 · <a href="#" style="color:#0a84ff;">Report an issue</a></p>
+    </div>`,
+    answer: "phishing",
+    explanation: `<b>Watering Hole Phishing</b> — Instead of targeting individuals directly, a watering hole attack infects a website that a specific group of people visits regularly — like a course portal, industry forum, or internal wiki. The attacker either compromises the real site or creates a convincing replica. When victims visit and download files or click links, malware is silently installed on their device. It's named after predators who wait at watering holes for prey to come to them. <br><br><b>Red flags in this example:</b> The URL is <code>byu-coursework-portal.com</code> — a generic <code>.com</code> domain, not BYU's actual learning management system (which would be on <code>learningsuite.byu.edu</code> or <code>byu.instructure.com</code>). The site uses HTTP instead of HTTPS (note the ⚠️ icon). While the page looks like a legitimate course portal with realistic file names and sizes, downloading files from this fake site could install malware. Always access course materials through your university's official LMS, not through links sent separately.`,
+    attachment: null
+  },
+
+  // 10. Whaling (targeting high-level individual)
+  {
+    type: "email",
+    from: `Dr. Richard L. Hammond <span class="hoverable" data-tooltip="r.hammond@byu-faculty.org">&lt;r.hammond@byu.edu&gt;</span>`,
+    subject: "Urgent: Budget Approval Needed Before 5 PM",
+    body: `<p>Hi,</p>
+      <p>I hope I'm not catching you at a bad time. I'm in a board meeting and can't make a phone call, but I need this handled before end of day.</p>
+      <p>The provost's office has flagged our department's annual research budget for review. I need you to <b>review and digitally sign the attached reallocation form</b> so we don't lose our Q3 funding allocation.</p>
+      <p>I've uploaded the document to our secure review portal:</p>
+      <p><a class="hoverable" data-tooltip="http://secure-doc-review.net/byu/budget-approval" href="#">Open Budget Reallocation Form (BYU DocuSign)</a></p>
+      <p>Please use your BYU credentials to log in and sign. This needs to be completed by <b>5:00 PM today</b> — if we miss the deadline, the funds will be returned to the general pool.</p>
+      <p>Thank you for handling this quickly. I'll follow up after my meeting.</p>
+      <p class="sig">Dr. Richard L. Hammond<br>Department Chair, Information Systems<br>
+      Brigham Young University<br>
+      (801) 422-XXXX</p>`,
+    answer: "phishing",
+    explanation: `<b>Whaling</b> — Whaling is a highly targeted phishing attack aimed at senior leaders — executives, department chairs, deans, or anyone with authority over finances, sensitive data, or system access. Unlike mass phishing, whaling emails are carefully researched and personalized. They often impersonate another leader and involve urgent financial requests, document approvals, or credential harvesting. The name comes from "going after the big fish." <br><br><b>Red flags in this example:</b> The sender displays as <code>r.hammond@byu.edu</code> but the real address is <code>r.hammond@byu-faculty.org</code> — a lookalike domain. The email creates urgency with a same-day deadline and the threat of losing funding. The "DocuSign" link goes to <code>secure-doc-review.net</code>, not the real DocuSign domain. The claim of being "in a board meeting" conveniently explains why they can't call to verify — a classic social engineering tactic to prevent out-of-band confirmation. Legitimate budget approvals follow established institutional workflows, not ad-hoc email requests with external links.`,
+    attachment: null
+  },
+
+  // 11. Clone Phishing (re-sent legitimate-looking email with swapped link)
+  {
+    type: "email",
+    from: `Jake Morrison <span class="hoverable" data-tooltip="jake.m0rrison.byu@gmail.com">&lt;jake.morrison@byu.edu&gt;</span>`,
+    subject: "Re: Assignment 6 Files — resending",
+    body: `<p>Hey,</p>
+      <p>Sorry about that — looks like the link I sent earlier expired. Here's an updated one:</p>
+      <p><a class="hoverable" data-tooltip="http://byubox-files.com/shared/assignment6-starter.zip" href="#">https://byu.box.com/s/assignment6-starter-code</a></p>
+      <p>Same files as before, just a new link. Let me know if it works this time!</p>
+      <p>– Jake</p>
+      <div style="border-left:3px solid #2a2d3e; padding-left:14px; margin-top:18px; color:#6272a4; font-size:0.85rem;">
+        <p style="margin-bottom:4px;"><b style="color:#8892a4;">From:</b> Jake Morrison</p>
+        <p style="margin-bottom:4px;"><b style="color:#8892a4;">Date:</b> April 1, 2026 at 3:22 PM</p>
+        <p style="margin-bottom:4px;"><b style="color:#8892a4;">Subject:</b> Assignment 6 Files</p>
+        <p style="margin-top:8px;">Here are the starter files for Assignment 6. I zipped everything together so it's easier to download.</p>
+        <p><a href="#" style="color:#6272a4; text-decoration:underline;">https://byu.box.com/s/a6-starter-code-cs260</a></p>
+        <p>– Jake</p>
+      </div>`,
+    answer: "phishing",
+    explanation: `<b>Clone Phishing</b> — Clone phishing duplicates a real, previously delivered email and re-sends it with a malicious link or attachment swapped in. Because the victim recognizes the message — same sender name, same subject, same formatting — they're far more likely to trust it. The attacker usually adds a plausible excuse for re-sending, like "the link expired" or "updated version." <br><br><b>Red flags in this example:</b> The sender displays as <code>jake.morrison@byu.edu</code> but the actual address is <code>jake.m0rrison.byu@gmail.com</code> — a Gmail address with a zero instead of "o" in Morrison. The new link appears to point to <code>byu.box.com</code> (BYU's real Box file sharing) but actually goes to <code>byubox-files.com</code>, a completely different domain. The quoted "original" email at the bottom is fabricated to build trust. If someone re-sends you a link, verify it by contacting them through a separate channel — don't just click the new one.`,
+    attachment: null
+  },
+
+  // 12. Deceptive Phishing (fake account security alert)
+  {
+    type: "email",
+    from: `Microsoft Account Team <span class="hoverable" data-tooltip="security@microsoftonline-alerts.com">&lt;account-security@microsoft.com&gt;</span>`,
+    subject: "Your Microsoft account has been locked",
+    body: `
+      <div style="text-align:center; margin-bottom:14px;">
+        <svg width="22" height="22" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;">
+          <rect x="0" y="0" width="10" height="10" fill="#f25022"/>
+          <rect x="12" y="0" width="10" height="10" fill="#7fba00"/>
+          <rect x="0" y="12" width="10" height="10" fill="#00a4ef"/>
+          <rect x="12" y="12" width="10" height="10" fill="#ffb900"/>
+        </svg>
+        <span style="font-weight:600; color:#e5e5ea; margin-left:6px; font-size:1rem;">Microsoft</span>
+      </div>
+      <p>We detected unusual sign-in activity on your Microsoft account.</p>
+      <div style="background:#252840; border:1px solid #2e3150; border-radius:6px; padding:14px; margin:14px 0;">
+        <p style="margin:4px 0; font-size:0.85rem;"><span style="color:#6272a4;">Location:</span> <span style="color:#d8dce6;">Moscow, Russia</span></p>
+        <p style="margin:4px 0; font-size:0.85rem;"><span style="color:#6272a4;">Device:</span> <span style="color:#d8dce6;">Unknown Linux device</span></p>
+        <p style="margin:4px 0; font-size:0.85rem;"><span style="color:#6272a4;">Time:</span> <span style="color:#d8dce6;">April 3, 2026 at 2:14 AM</span></p>
+        <p style="margin:4px 0; font-size:0.85rem;"><span style="color:#6272a4;">Status:</span> <span style="color:#ff5555; font-weight:600;">Account Locked</span></p>
+      </div>
+      <p>If this wasn't you, please verify your identity immediately to secure your account and restore access:</p>
+      <p style="text-align:center; margin:16px 0;">
+        <a class="hoverable" data-tooltip="http://microsoftonline-alerts.com/account/verify?id=8x2kf9" href="#" style="display:inline-block; background:#0078d4; color:#fff; padding:10px 24px; border-radius:4px; text-decoration:none; font-weight:600;">Verify My Identity</a>
+      </p>
+      <p>If this <em>was</em> you, you can ignore this email.</p>
+      <p style="font-size:0.82em; color:#6272a4; margin-top:16px;">This is a mandatory security notification. You cannot unsubscribe from account alerts.<br>Microsoft Corporation, One Microsoft Way, Redmond, WA 98052</p>`,
+    answer: "phishing",
+    explanation: `<b>Deceptive Phishing</b> — Deceptive phishing is the most common form of phishing. The attacker impersonates a well-known company (Microsoft, Google, Apple, Netflix, etc.) and fabricates an account security problem — a lockout, suspicious login, or expiring password — to frighten the victim into clicking a link and entering their credentials on a fake login page. These emails are sent in bulk to millions of people, relying on sheer volume to catch anyone who happens to have an account with that service. <br><br><b>Red flags in this example:</b> The sender displays as <code>account-security@microsoft.com</code> but the actual address is <code>security@microsoftonline-alerts.com</code> — a domain designed to look official but not owned by Microsoft. The "Verify My Identity" button links to <code>microsoftonline-alerts.com</code>, not Microsoft's real domain (<code>microsoft.com</code> or <code>login.microsoftonline.com</code>). The fabricated login details (Moscow, Linux device, 2:14 AM) are designed to trigger alarm. Legitimate Microsoft security alerts direct you to <code>account.microsoft.com</code> — and you should always navigate there manually rather than clicking email links.`,
+    attachment: null
+  },
+
+  // 13. Social Engineering (SMS requesting 2FA code)
+  {
+    type: "sms",
+    smsFrom: "801-555-0347",
+    smsTime: "3:17 PM",
+    body: `<p>Hi, this is Marcus from BYU IT Support. We're seeing an authentication error on your account that's blocking access to campus services.</p>
+      <p>I've triggered a password reset on our end. You should receive a 6-digit verification code shortly — can you send it to me here so I can complete the fix?</p>
+      <p>This needs to be done in the next few minutes or your account will be locked for 48 hours. Sorry for the inconvenience.</p>`,
+    answer: "phishing",
+    explanation: `<b>Social Engineering</b> — Social engineering manipulates human psychology rather than exploiting technical vulnerabilities. The attacker builds trust by impersonating someone in a position of authority (IT support, a manager, campus security) and creates urgency to pressure the victim into sharing sensitive information — passwords, verification codes, or personal data. It's the foundation underlying most phishing attacks, but in its purest form, it relies entirely on conversation and manipulation rather than fake links or websites. <br><br><b>Red flags in this example:</b> A legitimate IT support person will <em>never</em> ask you to share a verification code via text. That 6-digit code is specifically designed to prove that <em>you</em> are the account owner — if you forward it to someone else, they can use it to take over your account. This is called a <b>2FA interception attack</b>. The personal name ("Marcus"), the specific technical language ("authentication error"), and the tight deadline ("next few minutes") are all social engineering tactics designed to make you act before thinking. Real IT support will ask you to use the code yourself on an official page, or they'll walk you through the process in person.`,
+    attachment: null
+  },
+
   // ── LEGITIMATE EMAILS (3) ──────────────────────────────────
 
-  // 8. Legit – BYU email
+  // 14. Legit – BYU email
   {
     type: "email",
     from: `BYU Financial Services <span class="hoverable" data-tooltip="financialservices@byu.edu">&lt;financialservices@byu.edu&gt;</span>`,
@@ -267,7 +432,7 @@ const emails = [
     attachment: null
   },
 
-  // 9. Legit – well-known company promotion
+  // 15. Legit – well-known company promotion
   {
     type: "email",
     from: `Costco Wholesale <span class="hoverable" data-tooltip="offers@costco.com">&lt;offers@costco.com&gt;</span>`,
@@ -295,7 +460,7 @@ const emails = [
     attachment: null
   },
 
-  // 10. Legit – generic spam (annoying but not malicious)
+  // 16. Legit – generic spam (annoying but not malicious)
   {
     type: "email",
     from: `SurveyRewardz <span class="hoverable" data-tooltip="no-reply@surveyrewardz.com">&lt;no-reply@surveyrewardz.com&gt;</span>`,
