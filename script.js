@@ -1,5 +1,5 @@
 const emails = [
-  // ── PHISHING EMAILS (13) ─────────────────────────────────────
+  // ── PHISHING EMAILS (19) ─────────────────────────────────────
 
   // 1. Angler Phishing (fake social media support)
   {
@@ -407,7 +407,7 @@ const emails = [
     attachment: null
   },
 
-  // ── LEGITIMATE EMAILS (3) ──────────────────────────────────
+  // ── LEGITIMATE EMAILS (14) ──────────────────────────────────
 
   // 14. Legit – BYU email
   {
@@ -472,6 +472,254 @@ const emails = [
       <p class="sig">SurveyRewardz Inc.<br>440 N Wolfe Rd, Sunnyvale, CA 94085</p>`,
     answer: "legit",
     explanation: `<b>Legitimate (Spam, but Not Phishing)</b> — This is an important distinction: not every annoying or unsolicited email is a phishing attempt. This is marketing spam from a real (if minor) company. <br><br><b>Why it's not phishing:</b> All links consistently point to <code>surveyrewardz.com</code> over HTTPS — the sending domain and link domains match. The reward is modest and realistic ($5, not "$500 FREE!"). It includes a physical mailing address and a clear unsubscribe option, both legally required by the CAN-SPAM Act. It references a specific sign-up date, which adds credibility. <br><br><b>The lesson:</b> Learning to distinguish between "annoying but harmless" and "actively malicious" is a key skill. Phishing emails typically impersonate well-known brands, use mismatched domains, create false urgency, and try to harvest credentials or financial data. This email does none of those things — it's just a company you signed up with sending you marketing.`,
+    attachment: null
+  },
+
+  // ── NEW PHISHING TYPES ──────────────────────────────────────
+
+  // 17. Spear Phishing (targeted at a specific student)
+  {
+    type: "email",
+    from: `BYU Academic Advising <span class="hoverable" data-tooltip="advising@byu-studentportal.com">&lt;advising@byu.edu&gt;</span>`,
+    subject: "Follow-up on your Fall registration hold",
+    body: `<p>Hi Jacob,</p>
+      <p>We noticed your Fall registration hold is still active. Because you recently met with an advisor, you can clear it immediately using the secure student form below:</p>
+      <p><a class="hoverable" data-tooltip="http://byu-advising-check.com/clear-hold?sid=jacob" href="#">https://my.byu.edu/registration/clear-hold</a></p>
+      <p>Please complete this before <b>5:00 PM today</b> to avoid delays.</p>
+      <p class="sig">BYU Academic Advising<br>Brigham Young University</p>`,
+    answer: "phishing",
+    explanation: `<b>Spear Phishing</b> — Unlike mass phishing blasts, spear phishing targets a specific individual using personal details the attacker has gathered — your name, major, advisor, or enrollment status. The personalization makes the message far more convincing than a generic "Dear user" email. <br><br><b>Red flags in this example:</b> The sender displays as <code>advising@byu.edu</code> but the real address is <code>advising@byu-studentportal.com</code> — a lookalike domain, not BYU's official <code>.edu</code>. The link appears to go to <code>my.byu.edu</code> but actually points to <code>byu-advising-check.com</code>. The same-day 5:00 PM deadline creates artificial urgency. Real BYU registration holds are managed through your MyBYU portal, not through links in emails.`,
+    attachment: null
+  },
+
+  // 18. Vishing (voice phishing via voicemail notification)
+  {
+    type: "email",
+    from: `BYU IT Support <span class="hoverable" data-tooltip="alerts@byu-itdesk.net">&lt;itsupport@byu.edu&gt;</span>`,
+    subject: "Missed Call From BYU IT Help Desk",
+    body: `<p>Hi,</p>
+      <p>We attempted to reach you regarding <b>suspicious login activity</b> on your account. Please call our technician immediately at <b>801-555-0194</b> and have your Net ID password and Duo code ready for verification.</p>
+      <p>If we do not hear from you within 2 hours, your account will be suspended as a precaution.</p>
+      <p class="sig">BYU IT Help Desk<br>Brigham Young University<br>2027 CTB</p>`,
+    answer: "phishing",
+    explanation: `<b>Vishing (Voice Phishing)</b> — Vishing tricks victims into calling a fake phone number where an attacker (or automated system) collects sensitive information like passwords, verification codes, or personal data. The email or voicemail creates urgency so you call without thinking. <br><br><b>Red flags in this example:</b> The sender domain is <code>byu-itdesk.net</code>, not BYU's real <code>byu.edu</code>. The phone number (<code>801-555-0194</code>) is a fake — BYU IT's real number is (801) 422-4000. Legitimate IT support will <em>never</em> ask for your password or Duo code over the phone. If you receive a message like this, look up the official number yourself and call that instead.`,
+    attachment: null
+  },
+
+  // 19. Email Phishing (fake mailbox quota warning)
+  {
+    type: "email",
+    from: `BYU Mail Admin <span class="hoverable" data-tooltip="admin@byu-mailsupport.com">&lt;mailadmin@byu.edu&gt;</span>`,
+    subject: "Mailbox Quota Exceeded — Action Required",
+    body: `<p>Your BYU mailbox has reached <b>98% capacity</b> and incoming messages may be blocked.</p>
+      <p>Please verify your account and increase storage here:</p>
+      <p><a class="hoverable" data-tooltip="http://byu-mailrestore.com/quota/verify" href="#">https://mail.byu.edu/increase-storage</a></p>
+      <p>Failure to act today may result in <b>account suspension</b>.</p>
+      <p class="sig">BYU Mail Administration<br>Office of Information Technology</p>`,
+    answer: "phishing",
+    explanation: `<b>Email Phishing</b> — The most common type of phishing. Attackers send emails that look like they come from a trusted source — IT departments, banks, or popular services — and try to get victims to click a link, open an attachment, or reply with sensitive information. <br><br><b>Red flags in this example:</b> The sender's actual domain is <code>byu-mailsupport.com</code>, not BYU's <code>byu.edu</code>. The link shows <code>mail.byu.edu</code> but actually points to <code>byu-mailrestore.com</code>. The "act today or lose your account" threat is a classic urgency tactic. BYU manages email storage through official OIT channels, not through external verification links.`,
+    attachment: null
+  },
+
+  // 20. HTTPS Phishing (fake Microsoft 365 security check)
+  {
+    type: "website",
+    browserUrl: "https://microsoft-verify-login.com/365/signin",
+    browserTitle: "Microsoft 365 — Security Check",
+    body: `<div class="web-page">
+      <div style="text-align:center; margin-bottom:16px;">
+        <svg width="22" height="22" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;">
+          <rect x="0" y="0" width="10" height="10" fill="#f25022"/>
+          <rect x="12" y="0" width="10" height="10" fill="#7fba00"/>
+          <rect x="0" y="12" width="10" height="10" fill="#00a4ef"/>
+          <rect x="12" y="12" width="10" height="10" fill="#ffb900"/>
+        </svg>
+        <span style="font-weight:600; color:#e5e5ea; margin-left:6px; font-size:1rem;">Microsoft 365</span>
+      </div>
+      <div class="web-form-box">
+        <p style="font-size:0.88rem; color:#ff5555; margin-bottom:12px;">⚠️ Unusual sign-in activity detected. Confirm your identity within 30 minutes to keep access to your files.</p>
+        <label class="web-label">Email or phone</label>
+        <div class="web-input">you@byu.edu</div>
+        <label class="web-label">Password</label>
+        <div class="web-input web-input-pw">••••••••</div>
+        <div class="web-btn-primary" style="background:#0078d4;">Sign in</div>
+        <p style="font-size:0.78rem; color:#6272a4; margin-top:12px;">Can't access your account? <a href="#" style="color:#0a84ff;">Get help</a></p>
+      </div>
+    </div>`,
+    answer: "phishing",
+    explanation: `<b>HTTPS Phishing</b> — Many people assume a site is safe because the URL starts with <code>https://</code> and shows a lock icon. But HTTPS only means the connection is encrypted — it says nothing about who owns the site. Attackers can easily get free SSL certificates for their phishing domains, giving fake sites the same lock icon as legitimate ones. <br><br><b>Red flags in this example:</b> The URL is <code>microsoft-verify-login.com</code> — despite having HTTPS and a 🔒 lock icon, this is not Microsoft's domain. The real Microsoft sign-in page is at <code>login.microsoftonline.com</code> or <code>login.live.com</code>. The 30-minute countdown creates panic. Never trust a site just because it has HTTPS — always check the actual domain name.`,
+    attachment: null
+  },
+
+  // 21. Pharming (fake network update installer)
+  {
+    type: "email",
+    from: `BYU Network Services <span class="hoverable" data-tooltip="network@byu-devicecheck.com">&lt;network@byu.edu&gt;</span>`,
+    subject: "Required Campus Network Update",
+    body: `<p>To maintain secure access to BYU Wi-Fi, please install the attached network update before reconnecting.</p>
+      <p>After installation, sign in again using the campus login page provided in the installer.</p>
+      <p>Failure to update may interrupt your internet access.</p>
+      <p><a class="hoverable" data-tooltip="http://byu-devicecheck.com/downloads/network-patch.exe" href="#">Download Network Update (network-patch.exe)</a></p>
+      <p class="sig">BYU Network Services<br>Office of Information Technology</p>`,
+    answer: "phishing",
+    explanation: `<b>Pharming</b> — Pharming silently redirects you to a fake website even if you type the correct URL. It works by corrupting your device's DNS settings or network configuration — so when your computer looks up "byu.edu," it's sent to the attacker's server instead. The email version tricks you into installing software that modifies your DNS, effectively poisoning all your future web requests. <br><br><b>Red flags in this example:</b> The sender's real domain is <code>byu-devicecheck.com</code>, not <code>byu.edu</code>. The download link points to an <code>.exe</code> file on that same fake domain. Legitimate campus network updates are pushed through your device's settings app or official IT pages — BYU would never ask you to download and run an executable from an email link. Installing this file would likely alter your DNS settings, redirecting you to attacker-controlled copies of campus websites.`,
+    attachment: { name: "network-patch.exe", tooltip: "network-patch.exe — 3.2 MB executable" }
+  },
+
+  // 22. Pop-up Phishing (fake browser security warning)
+  {
+    type: "website",
+    browserUrl: "http://browser-cleanup-now.com/scan/warning",
+    browserTitle: "⚠ Security Warning — Action Required",
+    body: `<div class="web-page" style="text-align:center;">
+      <div style="font-size:3rem; margin-bottom:10px;">🛑</div>
+      <h2 style="color:#ff5555; font-size:1.2rem; margin-bottom:10px;">WARNING: Your device may be infected!</h2>
+      <p style="font-size:0.88rem; color:#d8dce6; margin-bottom:14px;">Windows Defender has detected <b>3 threats</b> including spyware that may be recording your keystrokes.</p>
+      <div style="background:#252840; border:1px solid #ff5555; border-radius:8px; padding:14px; margin:14px 0; text-align:left;">
+        <p style="margin:4px 0; font-size:0.82rem;"><span style="color:#ff5555;">⬤</span> <span style="color:#d8dce6;">Trojan.GenericKD.46853 — <b>HIGH RISK</b></span></p>
+        <p style="margin:4px 0; font-size:0.82rem;"><span style="color:#ffb86c;">⬤</span> <span style="color:#d8dce6;">Spyware.Keylogger.PWS — <b>MEDIUM</b></span></p>
+        <p style="margin:4px 0; font-size:0.82rem;"><span style="color:#ffb86c;">⬤</span> <span style="color:#d8dce6;">Adware.BrowserModifier — <b>MEDIUM</b></span></p>
+      </div>
+      <div class="web-btn-primary" style="background:#ff5555; color:#fff;">Remove Threats Now</div>
+      <p style="font-size:0.78rem; color:#8892a4; margin-top:10px;">Or call Microsoft Support: <b>1-888-555-0173</b></p>
+      <p style="font-size:0.72rem; color:#6272a4; margin-top:8px;">⚠ Do not close this window until the cleanup is complete</p>
+    </div>`,
+    answer: "phishing",
+    explanation: `<b>Pop-up Phishing</b> — Pop-up phishing uses alarming on-screen warnings that mimic system alerts or antivirus notifications. They claim your device is infected and pressure you to click a "fix" button (which installs actual malware) or call a fake support number (where a scammer tries to gain remote access to your computer). These often appear as browser pop-ups or full-page redirects. <br><br><b>Red flags in this example:</b> The URL is <code>browser-cleanup-now.com</code> — a website cannot actually scan your computer for viruses. Real Windows Defender alerts appear in your system tray, not in a browser tab. The threat names look technical but are fabricated. The fake support number (<code>1-888-555-0173</code>) connects to scammers, not Microsoft. The instruction "do not close this window" is designed to keep you engaged with the scam. If you see a warning like this, simply close the tab.`,
+    attachment: null
+  },
+
+  // ── NEW LEGITIMATE EXAMPLES ─────────────────────────────────
+
+  // 23. Legit – BYU advising appointment
+  {
+    type: "email",
+    from: `BYU Academic Advising <span class="hoverable" data-tooltip="advising@byu.edu">&lt;advising@byu.edu&gt;</span>`,
+    subject: "Advising Appointment Confirmation",
+    body: `<div style="text-align:center; margin-bottom:14px;">
+        <svg width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="22" cy="22" r="22" fill="#002e5d"/>
+          <text x="22" y="28" text-anchor="middle" font-family="'DM Sans', serif" font-size="16" font-weight="700" fill="#fff">BYU</text>
+        </svg>
+      </div>
+      <p>Hi Jacob,</p>
+      <p>This is a confirmation for your advising appointment on <b>Tuesday at 2:30 PM</b> in 2500 WSC. If you need to reschedule, please use MyMAP.</p>
+      <p>Thank you,<br>BYU Academic Advising</p>`,
+    answer: "legit",
+    explanation: `<b>Legitimate Email</b> — This is a genuine BYU advising confirmation. <br><br><b>Trust indicators:</b> The sender uses the real <code>@byu.edu</code> domain. The email provides specific, verifiable details (room number 2500 WSC, day and time) but doesn't ask you to click any links or enter credentials. It directs you to the official MyMAP system to make changes. No urgency tactics or threats.`,
+    attachment: null
+  },
+
+  // 24. Legit – Campus tech deal
+  {
+    type: "email",
+    from: `Campus Tech Deals <span class="hoverable" data-tooltip="offers@campustechdeals.com">&lt;offers@campustechdeals.com&gt;</span>`,
+    subject: "Student Discount This Week Only",
+    body: `<p>Students can get <b>15% off laptop accessories</b> this week with a valid student email at checkout.</p>
+      <p>Offer ends Friday.</p>
+      <p style="font-size:0.85em; color:#6272a4;">To unsubscribe, <a class="hoverable" data-tooltip="https://www.campustechdeals.com/unsubscribe" href="#">click here</a>.</p>`,
+    answer: "legit",
+    explanation: `<b>Legitimate Promotion</b> — This is a standard marketing email. <br><br><b>Trust indicators:</b> The sending domain and unsubscribe link match (<code>campustechdeals.com</code>). The discount is realistic (15%, not 90%). It doesn't ask for personal information, passwords, or payment data in the email itself. There's a clear unsubscribe option.`,
+    attachment: null
+  },
+
+  // 25. Legit – BYU Outdoor Adventure Club
+  {
+    type: "email",
+    from: `BYU Outdoor Adventure Club <span class="hoverable" data-tooltip="newsletter@clubs.byu.edu">&lt;newsletter@clubs.byu.edu&gt;</span>`,
+    subject: "Join the Outdoor Adventure Club This Saturday",
+    body: `<p>Hey everyone,</p>
+      <p>We're doing a beginner-friendly hike this Saturday morning. Meet at the <b>Wilkinson Center at 8:00 AM</b>.</p>
+      <p>Everyone is welcome!</p>`,
+    answer: "legit",
+    explanation: `<b>Legitimate Email</b> — This is a real BYU club newsletter. <br><br><b>Trust indicators:</b> The sender uses <code>clubs.byu.edu</code>, which is a subdomain of BYU's official <code>.edu</code> domain. It doesn't contain any links at all — just a meeting time and location. No urgency, no requests for information, and no attachments.`,
+    attachment: null
+  },
+
+  // 26. Legit – BYU Career Services
+  {
+    type: "email",
+    from: `BYU Career Services <span class="hoverable" data-tooltip="careerservices@byu.edu">&lt;careerservices@byu.edu&gt;</span>`,
+    subject: "BYU Career Fair Reminder",
+    body: `<p>Hi,</p>
+      <p>This is a reminder that the campus career fair starts tomorrow at <b>10:00 AM in the Wilkinson Center Ballroom</b>. Bring your student ID and copies of your resume.</p>
+      <p>Thanks,<br>BYU Career Services</p>`,
+    answer: "legit",
+    explanation: `<b>Legitimate Email</b> — A genuine BYU career services notification. <br><br><b>Trust indicators:</b> Sent from the official <code>@byu.edu</code> domain. Contains verifiable event details (specific time, location). Doesn't include any links, doesn't request credentials, and doesn't create artificial urgency.`,
+    attachment: null
+  },
+
+  // 27. Legit – BYU Library notice
+  {
+    type: "email",
+    from: `BYU Library <span class="hoverable" data-tooltip="notices@byu.edu">&lt;notices@byu.edu&gt;</span>`,
+    subject: "Library Item Due Tomorrow",
+    body: `<p>Hello,</p>
+      <p>This is a reminder that your library item is due tomorrow by <b>11:59 PM</b>. You can return it in person or renew it through your library account if eligible.</p>
+      <p>BYU Library</p>`,
+    answer: "legit",
+    explanation: `<b>Legitimate Email</b> — A standard library due-date reminder. <br><br><b>Trust indicators:</b> Sent from <code>@byu.edu</code>. Gives you options (return in person or renew online) without providing suspicious links. The tone is informational, not threatening — it doesn't say your account will be locked if you don't act.`,
+    attachment: null
+  },
+
+  // 28. Legit – Canvas maintenance notice
+  {
+    type: "email",
+    from: `BYU Office of Information Technology <span class="hoverable" data-tooltip="oit@byu.edu">&lt;oit@byu.edu&gt;</span>`,
+    subject: "Canvas Maintenance Notice",
+    body: `<p>Canvas will undergo scheduled maintenance on <b>Saturday from 1:00 AM to 3:00 AM</b>. During this time, some features may be temporarily unavailable.</p>
+      <p>Thank you for your patience.</p>
+      <p class="sig">BYU Office of Information Technology</p>`,
+    answer: "legit",
+    explanation: `<b>Legitimate Email</b> — A real IT maintenance notification. <br><br><b>Trust indicators:</b> Sent from the official <code>oit@byu.edu</code> address. It's purely informational — it tells you about planned downtime but doesn't ask you to click anything, verify anything, or enter credentials. Maintenance windows at off-peak hours (1–3 AM Saturday) are standard practice.`,
+    attachment: null
+  },
+
+  // 29. Legit – BYU Cybersecurity Club event
+  {
+    type: "email",
+    from: `BYU Cybersecurity Club <span class="hoverable" data-tooltip="events@clubs.byu.edu">&lt;events@clubs.byu.edu&gt;</span>`,
+    subject: "Free Cybersecurity Workshop This Friday",
+    body: `<p>Join us Friday at <b>4:00 PM</b> for a workshop on spotting phishing attempts, using password managers, and protecting your devices.</p>
+      <p>All students are welcome!</p>`,
+    answer: "legit",
+    explanation: `<b>Legitimate Email</b> — A real campus club event announcement. <br><br><b>Trust indicators:</b> Sent from <code>clubs.byu.edu</code>, an official BYU subdomain. No links, no attachments, no requests for information. Just a time and open invitation.`,
+    attachment: null
+  },
+
+  // 30. Legit – BYU Software Center
+  {
+    type: "email",
+    from: `BYU IT Software Center <span class="hoverable" data-tooltip="software@byu.edu">&lt;software@byu.edu&gt;</span>`,
+    subject: "Software Available Through Campus License",
+    body: `<p>Students can access approved software through the university software portal. Instructions for downloading and installation are available on the BYU IT website.</p>
+      <p class="sig">BYU IT</p>`,
+    answer: "legit",
+    explanation: `<b>Legitimate Email</b> — A real BYU IT notification. <br><br><b>Trust indicators:</b> Sent from <code>@byu.edu</code>. Directs you to the official BYU IT website — doesn't include a direct download link or ask you to install anything from the email itself. No urgency or threats.`,
+    attachment: null
+  },
+
+  // 31. Legit – Phone plan promo
+  {
+    type: "email",
+    from: `Mountain Wireless <span class="hoverable" data-tooltip="promotions@mountainwireless.com">&lt;promotions@mountainwireless.com&gt;</span>`,
+    subject: "Save on Your Next Phone Plan Upgrade",
+    body: `<p>Upgrade your plan this month and receive an extra <b>5 GB of data</b> for free for three months. Offer valid through April 30.</p>
+      <p style="font-size:0.85em; color:#6272a4;">See store for details.</p>`,
+    answer: "legit",
+    explanation: `<b>Legitimate Promotion</b> — A standard carrier marketing email. <br><br><b>Trust indicators:</b> The sending domain matches the brand. The offer is modest and realistic. It directs you to visit a store rather than clicking a suspicious link. No passwords or personal info requested.`,
+    attachment: null
+  },
+
+  // 32. Legit – Provo housing newsletter
+  {
+    type: "email",
+    from: `Provo Housing Updates <span class="hoverable" data-tooltip="info@provohousingupdates.com">&lt;info@provohousingupdates.com&gt;</span>`,
+    subject: "Apartment Listings Near Campus",
+    body: `<p>This week's newsletter includes new listings, roommate openings, and summer contract options near campus.</p>
+      <p style="font-size:0.85em; color:#6272a4;">You are receiving this because you joined our housing list.</p>`,
+    answer: "legit",
+    explanation: `<b>Legitimate (Newsletter)</b> — A real housing newsletter. <br><br><b>Trust indicators:</b> The sending domain is consistent. It references your subscription. The content is informational only — no links to enter credentials, no urgency, and no requests for personal data.`,
     attachment: null
   }
 ];
