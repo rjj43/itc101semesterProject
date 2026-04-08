@@ -84,7 +84,7 @@ const emails = [
           <span style="font-size:0.78rem; color:#8892a4;">Remember me on this device</span>
         </div>
         <div class="web-btn-primary" style="background:#8be9fd; color:#0f1117;">Connect to WiFi</div>
-        <p style="font-size:0.72rem; color:#6272a4; margin-top:10px; text-align:center;">By connecting, you agree to our <a href="#" style="color:#0a84ff;">Terms of Service</a></p>
+        <p style="font-size:0.72rem; color:#6272a4; margin-top:10px; text-align:center;">By connecting, you agree to our <a class="hoverable" data-tooltip="http://free-wifi-connect.net/terms" href="#" style="color:#0a84ff;">Terms of Service</a></p>
       </div>
       <p style="font-size:0.72rem; color:#6272a4; margin-top:14px; text-align:center;">Powered by AirNet Hospitality Services</p>
     </div>`,
@@ -113,10 +113,10 @@ const emails = [
         <label class="web-label">Password</label>
         <div class="web-input web-input-pw">••••••••</div>
         <div class="web-btn-primary">Sign in</div>
-        <p style="font-size:0.78rem; color:#6272a4; margin-top:12px;">By continuing, you agree to Amazon's <a href="#" style="color:#0a84ff;">Conditions of Use</a> and <a href="#" style="color:#0a84ff;">Privacy Notice</a>.</p>
+        <p style="font-size:0.78rem; color:#6272a4; margin-top:12px;">By continuing, you agree to Amazon's <a class="hoverable" data-tooltip="http://www.amaz0n-verify.com/conditions" href="#" style="color:#0a84ff;">Conditions of Use</a> and <a class="hoverable" data-tooltip="http://www.amaz0n-verify.com/privacy" href="#" style="color:#0a84ff;">Privacy Notice</a>.</p>
       </div>
       <div class="web-divider" style="margin:16px 0;"></div>
-      <p style="font-size:0.8rem; color:#6272a4; text-align:center;">New to Amazon? <a href="#" style="color:#0a84ff;">Create your Amazon account</a></p>
+      <p style="font-size:0.8rem; color:#6272a4; text-align:center;">New to Amazon? <a class="hoverable" data-tooltip="http://www.amaz0n-verify.com/register" href="#" style="color:#0a84ff;">Create your Amazon account</a></p>
     </div>`,
     answer: "phishing",
     explanation: `<b>Website Spoofing</b> — Website spoofing involves creating a near-perfect replica of a legitimate website to steal login credentials. Attackers clone the visual design, branding, and layout of real sites — often down to the fonts and images — making the fake virtually indistinguishable at first glance. Victims typically arrive via phishing emails, ads, or search results. <br><br><b>Red flags in this example:</b> The URL says <code>amaz0n-verify.com</code> — using a zero instead of the letter "o" and appending "-verify" to seem official. The connection uses HTTP instead of HTTPS (note the ⚠️ warning icon, not the 🔒 lock). The real Amazon sign-in page is at <code>amazon.com/ap/signin</code> over a secure HTTPS connection. Always check the URL bar carefully before entering credentials, and bookmark important login pages so you never rely on links to reach them.`,
@@ -311,7 +311,7 @@ const emails = [
         <span style="color:#0a84ff; font-size:0.82rem;">Open</span>
       </div>
       <div class="web-divider" style="margin:14px 0;"></div>
-      <p style="font-size:0.78rem; color:#6272a4;">Last updated: April 2, 2026 · <a href="#" style="color:#0a84ff;">Report an issue</a></p>
+      <p style="font-size:0.78rem; color:#6272a4;">Last updated: April 2, 2026 · <a class="hoverable" data-tooltip="http://byu-coursework-portal.com/report" href="#" style="color:#0a84ff;">Report an issue</a></p>
     </div>`,
     answer: "phishing",
     explanation: `<b>Watering Hole Phishing</b> — Instead of targeting individuals directly, a watering hole attack infects a website that a specific group of people visits regularly — like a course portal, industry forum, or internal wiki. The attacker either compromises the real site or creates a convincing replica. When victims visit and download files or click links, malware is silently installed on their device. It's named after predators who wait at watering holes for prey to come to them. <br><br><b>Red flags in this example:</b> The URL is <code>byu-coursework-portal.com</code> — a generic <code>.com</code> domain, not BYU's actual learning management system (which would be on <code>learningsuite.byu.edu</code> or <code>byu.instructure.com</code>). The site uses HTTP instead of HTTPS (note the ⚠️ icon). While the page looks like a legitimate course portal with realistic file names and sizes, downloading files from this fake site could install malware. Always access course materials through your university's official LMS, not through links sent separately.`,
@@ -353,7 +353,7 @@ const emails = [
         <p style="margin-bottom:4px;"><b style="color:#8892a4;">Date:</b> April 1, 2026 at 3:22 PM</p>
         <p style="margin-bottom:4px;"><b style="color:#8892a4;">Subject:</b> Assignment 6 Files</p>
         <p style="margin-top:8px;">Here are the starter files for Assignment 6. I zipped everything together so it's easier to download.</p>
-        <p><a href="#" style="color:#6272a4; text-decoration:underline;">https://byu.box.com/s/a6-starter-code-cs260</a></p>
+        <p><a class="hoverable" data-tooltip="https://byu.box.com/s/a6-starter-code-cs260" href="#" style="color:#6272a4; text-decoration:underline;">https://byu.box.com/s/a6-starter-code-cs260</a></p>
         <p>– Jake</p>
       </div>`,
     answer: "phishing",
@@ -543,7 +543,7 @@ const emails = [
         <label class="web-label">Password</label>
         <div class="web-input web-input-pw">••••••••</div>
         <div class="web-btn-primary" style="background:#0078d4;">Sign in</div>
-        <p style="font-size:0.78rem; color:#6272a4; margin-top:12px;">Can't access your account? <a href="#" style="color:#0a84ff;">Get help</a></p>
+        <p style="font-size:0.78rem; color:#6272a4; margin-top:12px;">Can't access your account? <a class="hoverable" data-tooltip="https://microsoft-verify-login.com/help" href="#" style="color:#0a84ff;">Get help</a></p>
       </div>
     </div>`,
     answer: "phishing",
